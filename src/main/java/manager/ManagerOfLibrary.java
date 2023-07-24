@@ -14,6 +14,6 @@ public interface ManagerOfLibrary {
     void giveBook(User user, Book... books);
 
     void addToHistory(User user, Book book);
-    Author findAuthor (String nikName);
+     Author findAuthor (String name);
 
 }
