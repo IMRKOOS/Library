@@ -1,10 +1,9 @@
 package manager;
 
-import entities.Author;
-import entities.Book;
-import entities.User;
+import entities.*;
 
 import java.util.Date;
+import java.util.List;
 
 public interface ManagerOfLibrary {
     void addAuthor(Author author);
@@ -12,8 +11,9 @@ public interface ManagerOfLibrary {
     void addBook(Book book);
     void addUser(User user);
     void giveBook(User user, Book... books);
-
-    void addToHistory(User user, Book book);
-     Author findAuthor (String name);
+    void returnBook(User user, Book book);
+    void addToHistory(HistoryEntry obj,User user,Book book);
+     Author findAuthor (String name) throws LibraryException;
+     List<HistoryEntry> getHistory(HistoryEntry obj);
 
 }

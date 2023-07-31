@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -9,7 +10,7 @@ public class User {
     private String surName;
     private String secondName;
     private Date birth;
-    private List<Book> debt;
+    private List<Book> debt = new ArrayList<>();
 
     public User(String name, String surName, String secondName, Date birth) {
         this.name = name;
@@ -22,40 +23,14 @@ public class User {
         return debt;
     }
 
-    public void setDebt(List<Book> debt) {
-        this.debt = debt;
-    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getSurName() {
         return surName;
-    }
-
-    public void setSurName(String surName) {
-        this.surName = surName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public Date getBirth() {
-        return birth;
-    }
-
-    public void setBirth(Date birth) {
-        this.birth = birth;
     }
 
     @Override

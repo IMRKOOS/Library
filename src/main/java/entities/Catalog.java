@@ -25,9 +25,9 @@ public class Catalog <T> implements Predicate<T> {
         }
         return false;
     }
-    public void hasA(T o) throws IOException {
+    public void hasA(T o) throws LibraryException {
         if (!(test(o))){
-            throw new IOException("Library Exception");
+            throw new LibraryException("Catalog has not this " + o.getClass().getSimpleName());
         }
     }
 

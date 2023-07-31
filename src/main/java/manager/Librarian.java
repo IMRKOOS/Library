@@ -1,8 +1,5 @@
 package manager;
-import entities.Author;
-import entities.Book;
-import entities.Catalog;
-import entities.User;
+import entities.*;
 
 import java.io.IOException;
 import java.util.*;
@@ -42,23 +39,36 @@ catalogUsers.add(user);
         try{
             test(user);
             test(books);
-            user.setDebt(giveBooks);
+            for (Book authorName:
+            giveBooks){
+                findAuthor(authorName.getAuthor());
+            }
             for (Book book:
                     giveBooks){
                 catalogBooks.getCatalog().remove(book);
             }
+            for (Book debt:
+                 giveBooks) {
+                user.getDebt().add(debt);
+            }
             for (Book each:
                     giveBooks) {
-                addToHistory(user,each);
+                addToHistory(HistoryEntry.TAKE,user, each);
             }
-        }catch (IOException e){
+        }catch (LibraryException e){
             System.out.println(e.getMessage());
         }
     }
-    private void test (User user)throws IOException{
+
+    public void returnBook(User user, Book book){
+        user.getDebt().remove(book);
+        catalogBooks.getCatalog().add(book);
+        addToHistory(HistoryEntry.RETURN,user,book);
+    }
+    private void test (User user)throws LibraryException {
         catalogUsers.hasA(user);
         }
-    private void test (Book...books)throws IOException{
+    private void test (Book...books)throws LibraryException{
         List<Book> books1 = Arrays.asList(books);
 
             for (Book book:
@@ -70,28 +80,38 @@ catalogUsers.add(user);
 
 
     @Override
-    public void addToHistory(User user, Book book) {
-        History history = new History(user,book);
+    public void addToHistory(HistoryEntry obj, User user, Book book) {
+        History history = new History(user,book, obj);
         historyList.add(history);
     }
 
     @Override
-    public Author findAuthor(String nikName) {
+    public Author findAuthor(String nikName) throws LibraryException{
         for (Author author:
              catalogAuthors.getCatalog()) {
            if (author.getNikName().equals(nikName)){
                return author;
            }
         }
-        return null;
+        throw new LibraryException("Catalog has not this author - "+nikName );
     }
 
 
     public List<Author> getCatalogAuthors() {
         return catalogAuthors.getCatalog();
     }
-    public List<History> getHistoryList(){
+    public List<History> getHistory(){
         return historyList;
+    }
+
+    @Override
+    public List<HistoryEntry> getHistory(HistoryEntry obj) {
+        List<HistoryEntry> notes = new ArrayList<>();
+        for (History each:
+             historyList) {
+            if (each.getType() == obj){notes.add(each.getType());}
+        }
+        return notes;
     }
 }
 

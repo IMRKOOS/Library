@@ -3,7 +3,6 @@ package manager;
 import entities.Author;
 import entities.Book;
 import entities.User;
-
 import java.util.Date;
 
 public class Main {
@@ -21,16 +20,15 @@ public class Main {
         madamJuhariya.addAuthor(author);
         madamJuhariya.addBook(witcher);
         madamJuhariya.addUser(mark);
-                System.out.println(madamJuhariya.getCatalogAuthors());
         System.out.println(madamJuhariya.getCatalogAuthors());
         User alina =new User("Alina","Nechyporenko","Maratovna",new Date(1998,4,3));
         Book azbucka = new Book("Azbucka","Obichniy", 0,32);
         madamJuhariya.giveBook(mark,azbucka,lotr);
+        madamJuhariya.addAuthor(new Author("petro" ,"petrovich","ivanov","Tolkien"));
         madamJuhariya.addBook(lotr);
         madamJuhariya.giveBook(mark,lotr);
+        madamJuhariya.giveBook(mark,harryPotter);
      System.out.println(mark.getDebt());
-
-
-
+     System.out.println(madamJuhariya.getHistory());
     }
 }

@@ -17,7 +17,7 @@ private int pages;
 
     @Override
     public String toString() {
-        return "entities.Book{" +
+        return "Book{" +
                 "name='" + name + '\'' +
                 ", author='" + author + '\'' +
                 ", birth=" + birth +
